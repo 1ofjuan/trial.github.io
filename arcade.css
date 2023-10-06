@@ -1,0 +1,217 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  html, body {
+    height: 100%;
+  }
+  
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url('grass.jpg'); /* Specify the image path */
+    background-size: cover; /* Adjust the background size as needed */
+    background-repeat: no-repeat; /* Prevent background image from repeating */
+    background-position: center center; /* Center the background image */
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  body::before {
+    content: "";
+    background-color: rgba(77, 77, 77, 0.5); /* Specify the overlay color and opacity (0.5 in this example) */
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1; /* Place the overlay behind other content */
+}
+  
+  /* Timer Styles */
+  .timer {
+    font-size: 1em; /* Adjust the font size as needed */
+    margin-top: 20px;
+    color: #ffcc00; /* Timer text color */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for timer */
+  }
+  
+  .timer span {
+    font-weight: bold;
+    background-color: #333; /* Background color of the timer */
+    color: #ffcc00; /* Text color inside the timer */
+    padding: 4px 8px; /* Adjust padding to make the timer box smaller */
+    border-radius: 3px; /* Adjust border radius for a smaller box */
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5); /* Box shadow for the timer */
+  }
+ /* Simple Countdown Design */
+.countdown {
+  font-size: 0.8em; /* Adjust the font size to make the countdown text smaller */
+  margin-top: 20px;
+}
+ .score {
+  font-size: 6em; /* Adjust the font size as needed */
+ 
+
+}
+
+/* Increase the font size for the score itself */
+.score span {
+  font-size: 1.5em; /* Adjust the font size as needed */
+}
+  .board {
+    margin-top: 15px;
+    height: 600px;
+    width: 600px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 80px;
+  }
+  
+  .hole {
+    background-color: rgb(196, 104, 18);
+    border-radius: 50%;
+    box-shadow: inset 0 10px 0 7px rgb(53, 21, 6),
+                inset 0 20px 20px 15px rgba(0, 0, 0, 0.3),
+                0 0 5px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hole .mole {
+    width: 70%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    animation: rise 0.3s ease-out;
+  }
+  
+  @keyframes rise {
+    0% {
+      transform: translateX(-50%) translateY(100%);
+    }
+    100% {
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+  
+  .cursor {
+    height: 110px;
+    width: 100px;
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    background-image: url('hammer.png');
+    background-size: 100% 100%;
+    transform: translate(-20%, -20%);
+    transition: transform 0.1s;
+    pointer-events: none;
+  }
+  
+  .cursor.active {
+    transform: translate(-20%, -20%) rotate(-45deg);
+  }
+ /* Add borders to the scorePopup */
+#scorePopup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+  z-index: 2; /* Place it on top of other elements */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #fff; /* Add border with white color */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 5px; /* Add border radius for rounded corners */
+}
+
+/* Style the modal content */
+#scorePopup .modal-content {
+  background-color: #fff;
+  color: #000;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  text-align: center;
+  position: relative;
+}
+
+/* Add borders to the scorePopup */
+#scoreModal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+  z-index: 2; /* Place it on top of other elements */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #fff; /* Add border with white color */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 5px; /* Add border radius for rounded corners */
+}
+
+#scoreModal .modal-content {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  color: #000; /* Add this line to set the text color to black */
+}
+
+/* Style the close button */
+#scoreModal .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Style for the countdown and score */
+.countdown,
+.score {
+  font-size:2em;
+  margin-top: 20px;
+  color: #ffcc00;
+}
+
+/* Style for the timer */
+.countdown span {
+  font-weight: bold;
+  background-color: #333;
+  color: #ffcc00;
+  padding: 8px 16px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Style for the "Play Again" button */
+#playAgainButton {
+  background-color: #007BFF; /* Blue background */
+  color: #fff; /* White text */
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px; /* Add some margin to separate it from the score */
+}
+
+#playAgainButton:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
